@@ -1,0 +1,63 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .header {
+        height: 8vh;
+        width: 100vw;
+        background-color: #18191a;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .name h2 {
+        color: white;
+        font-size: 45px;
+        margin: 30px;
+        font-family: sans-serif;
+    }
+    
+    .join div button {
+        height: 70px;
+        width: 150px;
+        background-color: #3aacf7;
+        border-radius: 5px;
+        margin: 5px;
+        margin-top: 25px;
+        margin-right: 20px;
+    }
+    
+    .join div button a {
+        color: white;
+        font-size: 25px;
+        text-decoration: none;
+    }
+    
+    .profile-whole {
+        height: 70vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .prof {
+        height: 400px;
+        width: 1000px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    }
+    
+    img {
+        height: 280px;
+        width: 300px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+    }
