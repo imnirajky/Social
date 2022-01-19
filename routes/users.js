@@ -4,7 +4,7 @@ const passport = require('passport');
 
 const user_Controller = require('../controller/users_controller');
 router.get('/sign-in', user_Controller.signIn);
-router.get('/profile', user_Controller.profile);
+router.get('/profile', passport.checkAuthentication, user_Controller.profile);
 router.post('/create-account', user_Controller.create_account);
 //use passport to auth
 router.post('/login',
@@ -12,5 +12,5 @@ router.post('/login',
         'local', { failureRedirect: '/users/sign-in' }
     ), user_Controller.login);
 
-
+router.get('/logout', user_Controller.logout);
 module.exports = router;

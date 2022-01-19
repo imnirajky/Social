@@ -8,6 +8,9 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo');
+
+
 //Reading through the Post request
 app.use(express.urlencoded());
 //Breaks cookies Data into smaller and according to our needs
@@ -19,21 +22,30 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 //Entry Point
 
-//session cookie
+//session cookie && Now we will store this session
+// information in mongo store
 app.use(session({
     name: 'Social',
-    secret: '**************'
+    secret: '**************',
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: (1000 * 60 * 100);
-    }
+        maxAge: (1000 * 60 * 100)
+    },
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost/social_db',
+        mongooseConnection: db,
+        autoRemove: 'disabled'
+    }, function(err) {
+        console.log(err || 'connect-mongodb setup OK');
+    })
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 //-----------------------------
-
+app.use(passport.setAuthenticatedUser);
+// -- -- -- -- -- -- -- -
 app.use('/', require('./routes'));
 
 app.listen(port, function(err) {
